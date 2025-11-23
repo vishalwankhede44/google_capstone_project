@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+pydantic
+google-adk
+python-dotenv
+requests
+nest-asyncio
