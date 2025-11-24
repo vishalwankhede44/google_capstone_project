@@ -1,9 +1,4 @@
-import uuid
 from typing import Dict
-
-from google.adk.tools.tool_context import ToolContext
-
-from .job_store import PendingJob, job_store
 
 
 def build_workout_plan(
@@ -11,9 +6,16 @@ def build_workout_plan(
     minutes_per_day: int,
     days_per_week: int,
     fitness_level: str,
+    age: int,
+    weight: float,
+    gender: str,
     injuries: str = "none",
 ) -> Dict:
-    """Deterministically builds the workout plan payload."""
+    """Deterministically builds the workout plan payload.
+
+    This version uses explicit primitive parameters instead of a Dict so that the
+    ADK tool schema remains compatible with the Google GenAI function-calling API.
+    """
 
     goal = goal.lower()
     fitness_level = fitness_level.lower()
@@ -22,6 +24,7 @@ def build_workout_plan(
         "summary": "",
         "schedule": [],
         "guidelines": [],
+        "personalization": f"Plan customized for {gender}, age {age}, weight {weight}kg",
     }
 
     if "stress" in goal:
@@ -79,6 +82,15 @@ def build_workout_plan(
             )
         plan["schedule"].append(day_plan)
 
+    # Age-based adjustments
+    if age > 50:
+        plan["guidelines"].append("Focus on joint-friendly movements and proper warm-up.")
+        plan["summary"] += " Age-appropriate modifications included."
+    
+    # Weight-based guidance
+    if weight > 90:
+        plan["guidelines"].append("Consider low-impact exercises to protect joints.")
+    
     plan["guidelines"].append("Hydrate before and after sessions.")
     if injuries and injuries.lower() != "none":
         plan["guidelines"].append(f"CAUTION: Modify exercises to accommodate your {injuries}.")
@@ -95,111 +107,27 @@ def generate_workout_plan(
     minutes_per_day: int,
     days_per_week: int,
     fitness_level: str,
+    age: int,
+    weight: float,
+    gender: str,
     injuries: str = "none",
-    tool_context: ToolContext | None = None,
 ) -> Dict:
-    """Long-running tool entrypoint – enqueues plan generation job."""
+    """Generate a personalized workout plan.
 
-    if tool_context is None:
-        # Fallback so the tool can still be invoked synchronously in tests.
-        return build_workout_plan(goal, minutes_per_day, days_per_week, fitness_level, injuries)
+    Called by the Exercise Agent. The CWO provides the user's profile information
+    (age, weight, gender, fitness_level, injuries) via context so the agent can
+    fill these parameters when invoking the tool.
+    """
 
-    ticket_id = str(uuid.uuid4())
-    function_call_id = tool_context.function_call_id or ticket_id
-
-    job_store.add(
-        PendingJob(
-            ticket_id=ticket_id,
-            invocation_id=tool_context.invocation_id,
-            function_call_id=function_call_id,
-            user_id=tool_context.user_id,
-            session_id=tool_context.session.id,
-            params={
-                "goal": goal,
-                "minutes_per_day": minutes_per_day,
-                "days_per_week": days_per_week,
-                "fitness_level": fitness_level,
-                "injuries": injuries,
-            },
-        )
+    plan = build_workout_plan(
+        goal=goal,
+        minutes_per_day=minutes_per_day,
+        days_per_week=days_per_week,
+        fitness_level=fitness_level,
+        age=age,
+        weight=weight,
+        gender=gender,
+        injuries=injuries,
     )
 
-    tool_context.actions.skip_summarization = True
-
-    return {
-        "status": "accepted",
-        "ticket_id": ticket_id,
-        "message": "Great! I'll craft your plan and share it shortly.",
-    }
-
-
-# A2A tool: request mindfulness advice from the Mindfulness Agent via A2A protocol
-def get_mindfulness_advice(user_query: str) -> Dict:
-    """
-    Calls the Mindfulness Agent via A2A protocol to get mindfulness advice.
-    This enables the Exercise Agent to incorporate mindfulness suggestions into a holistic plan.
-    
-    Args:
-        user_query: The question or request to send to the mindfulness agent
-    
-    Returns:
-        Dictionary containing the mindfulness advice response
-    """
-    import requests
-    import json
-    
-    # URL of the mindfulness agent A2A server (running on port 8001)
-    MINDFULNESS_AGENT_URL = "http://localhost:8001"
-    
-    try:
-        # First, get the agent card to understand capabilities
-        agent_card_response = requests.get(
-            f"{MINDFULNESS_AGENT_URL}/.well-known/agent.json",
-            timeout=5
-        )
-        
-        if agent_card_response.status_code != 200:
-            return {
-                "error": "Mindfulness agent not available",
-                "advice": "Focus on deep breathing and gentle movement during your workouts."
-            }
-        
-        # Send task to the mindfulness agent
-        task_payload = {
-            "jsonrpc": "2.0",
-            "id": str(uuid.uuid4()),
-            "method": "tasks/send",
-            "params": {
-                "task": {
-                    "input": {
-                        "text": user_query
-                    }
-                }
-            }
-        }
-        
-        task_response = requests.post(
-            f"{MINDFULNESS_AGENT_URL}/tasks/send",
-            json=task_payload,
-            headers={"Content-Type": "application/json"},
-            timeout=30
-        )
-        
-        if task_response.status_code == 200:
-            result = task_response.json()
-            # Extract the response text from the A2A response
-            if "result" in result and "output" in result["result"]:
-                advice = result["result"]["output"].get("text", "")
-                return {"advice": advice}
-        
-        # Fallback if request fails
-        return {
-            "advice": "Consider incorporating mindfulness practices like deep breathing or meditation into your routine."
-        }
-        
-    except Exception as e:
-        # Fallback response if mindfulness agent is unavailable
-        return {
-            "error": str(e),
-            "advice": "Remember to stay present and mindful during your workouts. Focus on your breath and body sensations."
-        }
+    return plan

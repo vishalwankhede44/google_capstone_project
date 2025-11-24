@@ -1,0 +1,14 @@
+{
+  "default_user": {
+    "user_id": "default_user",
+    "age": 36,
+    "weight": 54
+  },
+  "alice": {
+    "user_id": "alice",
+    "age": 36,
+    "weight": 54,
+    "gender": "female",
+    "fitness_level": "beginner"
+  }
+}
