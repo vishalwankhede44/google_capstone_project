@@ -8,6 +8,8 @@ import textwrap
 from google.adk.agents import Agent
 from google.adk.tools import AgentTool
 from google.genai import types
+from google.adk.models.google_llm import Gemini
+from utils.utils import get_retry_config
 
 from .mindfulness_tools import get_current_locality
 
@@ -17,7 +19,10 @@ from .mindfulness_tools import get_current_locality
 # 1. Crisis Agent – handles self-harm / emergency messages
 crisis_agent = Agent(
     name="crisis_specialist",
-    model="gemini-2.5-flash",
+    model=Gemini(
+        model="gemini-2.5-flash",
+        retry_options=get_retry_config(),
+    ),
     tools=[get_current_locality],
     description="Use this tool for any input mentioning self-harm, suicide, severe distress, or 'ending it'.",
     instruction=textwrap.dedent(
@@ -41,7 +46,10 @@ crisis_agent = Agent(
 # 2. Coach Agent – mindfulness practice guide
 coach_agent = Agent(
     name="meditation_coach",
-    model="gemini-2.5-flash",
+    model=Gemini(
+        model="gemini-2.5-flash",
+        retry_options=get_retry_config(),
+    ),
     description="Use this tool when the user wants to practice a technique (breathing, body scan) or reduce anxiety.",
     instruction=textwrap.dedent(
         """
@@ -58,7 +66,10 @@ coach_agent = Agent(
 # 3. Educator Agent – theory and explanation
 educator_agent = Agent(
     name="mindfulness_professor",
-    model="gemini-2.5-flash",
+    model=Gemini(
+        model="gemini-2.5-flash",
+        retry_options=get_retry_config(),
+    ),
     description="Use this tool for theoretical questions (e.g., 'What is mindfulness?', 'How does it affect the brain?').",
     instruction=textwrap.dedent(
         """
@@ -75,7 +86,10 @@ educator_agent = Agent(
 
 mindfulness_agent = Agent(
     name="mindfulness_orchestrator",
-    model="gemini-2.5-pro",
+    model=Gemini(
+        model="gemini-2.5-pro",
+        retry_options=get_retry_config(),
+    ),
     tools=[
         AgentTool(agent=crisis_agent),
         AgentTool(agent=coach_agent),

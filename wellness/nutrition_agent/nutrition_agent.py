@@ -3,6 +3,8 @@
 import textwrap
 
 from google.adk.agents import Agent
+from google.adk.models.google_llm import Gemini
+from utils.utils import get_retry_config
 
 from .nutrition_tools import generate_nutrition_plan
 
@@ -62,7 +64,10 @@ NUTRITION_AGENT_INSTRUCTION = textwrap.dedent(
 
 
 nutrition_agent = Agent(
-    model="gemini-2.5-flash",
+    model=Gemini(
+        model="gemini-2.5-flash",
+        retry_options=get_retry_config()
+    ),
     name="nutrition_specialist",
     description="Evidence-based nutrition planner that personalizes macros, calories, and meals based on demographics.",
     instruction=NUTRITION_AGENT_INSTRUCTION,
