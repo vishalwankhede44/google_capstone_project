@@ -1,3 +1,0 @@
-"""
-Exercise Agent Package
-"""
