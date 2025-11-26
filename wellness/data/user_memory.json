@@ -21,6 +21,11 @@
         "goal": "reduce arm fat",
         "time_of_day": "morning"
       }
+    },
+    {
+      "summary": "User is experiencing joint pain and is seeking stretching and relaxation techniques. Provided a 4-7-8 breathing exercise for relaxation. Asked for preferred duration and frequency for stretching for a personalized plan.",
+      "timestamp": "2025-11-25T15:18:40.495023",
+      "metadata": null
     }
   ],
   "alice": [
@@ -37,6 +42,11 @@
     {
       "summary": "Provided a 30-minute indoor resistance band and bodyweight routine for Mondays as an alternative to walking due to pollution. Routine is beginner-friendly and mindful of previous arm pain, focusing on lower body and core with optional light arm work.",
       "timestamp": "2025-11-24T12:18:21.620862",
+      "metadata": null
+    },
+    {
+      "summary": "Provided a personalized non-vegetarian nutrition plan for Alice (36F, 54kg, 156cm, moderately active) to lose 5kg in one month, accommodating a wheat allergy. The plan includes a target of 1420 calories/day, with specific macro targets, meal ideas, hydration goals, and lifestyle tips.",
+      "timestamp": "2025-11-26T11:20:40.163815",
       "metadata": null
     }
   ]

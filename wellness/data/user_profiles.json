@@ -9,6 +9,7 @@
     "age": 36,
     "weight": 54,
     "gender": "female",
+    "height": 156,
     "fitness_level": "beginner"
   }
 }

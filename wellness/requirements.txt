@@ -1,7 +1,7 @@
 fastapi
 uvicorn
 pydantic
+nest-asyncio
 google-adk
 python-dotenv
 requests
-nest-asyncio

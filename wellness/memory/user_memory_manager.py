@@ -21,7 +21,7 @@ class MemoryEntry:
     """A single stored memory fragment."""
 
     summary: str
-    timestamp: str = field(default_factory=lambda: datetime.utcnow().isoformat())
+    timestamp: str = field(default_factory=lambda: datetime.now().isoformat())
     metadata: Dict[str, str] | None = None
 
 

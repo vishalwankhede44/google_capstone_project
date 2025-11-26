@@ -43,6 +43,29 @@ class UserProfile:
         if self.fitness_level is None:
             missing.append("fitness level (beginner/intermediate/advanced)")
         return missing
+
+    def is_complete_for_nutrition(self) -> bool:
+        """Check if profile has all required fields for nutrition planning."""
+        return all([
+            self.age is not None,
+            self.weight is not None,
+            self.gender is not None,
+            self.height is not None,
+        ])
+
+    def missing_fields_for_nutrition(self) -> list[str]:
+        """Return list of missing fields needed for nutrition planning."""
+        missing = []
+        if self.age is None:
+            missing.append("age")
+        if self.weight is None:
+            missing.append("weight (in kg)")
+        if self.gender is None:
+            missing.append("gender")
+        if self.height is None:
+            missing.append("height (in cm)")
+        return missing
+
     
     def to_dict(self) -> Dict[str, Any]:
         """Convert profile to dictionary, excluding None values."""

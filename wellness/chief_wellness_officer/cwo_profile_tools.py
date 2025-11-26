@@ -27,7 +27,9 @@ def get_user_profile(tool_context: ToolContext = None) -> Dict[str, Any]:
         "user_id": user_id,
         "profile": profile.to_dict(),
         "is_complete_for_exercise": profile.is_complete_for_exercise(),
-        "missing_for_exercise": profile.missing_fields_for_exercise()
+        "missing_for_exercise": profile.missing_fields_for_exercise(),
+        "is_complete_for_nutrition": profile.is_complete_for_nutrition(),
+        "missing_for_nutrition": profile.missing_fields_for_nutrition()
     }
 
 
@@ -77,5 +79,7 @@ def update_user_profile(
         "profile": profile.to_dict(),
         "is_complete_for_exercise": profile.is_complete_for_exercise(),
         "missing_for_exercise": profile.missing_fields_for_exercise(),
+        "is_complete_for_nutrition": profile.is_complete_for_nutrition(),
+        "missing_for_nutrition": profile.missing_fields_for_nutrition(),
         "message": "Profile updated successfully"
     }
