@@ -5,3 +5,12 @@ nest-asyncio
 google-adk
 python-dotenv
 requests
+
+vertexai
+google-cloud-aiplatform[adk,agent_engines]
+
+absl-py
+cloudpickle
+
+# opentelemetry-proto requires protobuf >=5.0,<7.0
+protobuf

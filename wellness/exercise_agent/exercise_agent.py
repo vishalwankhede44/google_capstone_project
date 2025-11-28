@@ -1,6 +1,8 @@
 
-from google.adk.agents.llm_agent import Agent
 from .exercise_tools import generate_workout_plan
+from google.adk.models.google_llm import Gemini
+from google.adk.agents import Agent
+from ..utils.utils import get_retry_config
 
 
 
@@ -27,7 +29,10 @@ Responsibilities:
 """
 
 exercise_agent = Agent(
-    model='gemini-2.5-flash',
+    model=Gemini(
+        model='gemini-2.5-flash',
+        retry_options=get_retry_config()
+    ),
     name='exercise_coach',
     description="A personalized exercise coach that creates workout plans. Receives user profile from CWO.",
     instruction=EXERCISE_AGENT_INSTRUCTION,

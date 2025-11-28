@@ -6,21 +6,24 @@ The orchestrator agent that routes user requests to the appropriate specialist.
 import textwrap
 from google.adk.agents import Agent
 from google.adk.models.google_llm import Gemini
+from ..utils.utils import get_retry_config
 from google.adk.tools import AgentTool
-from google.genai import types
 
-from exercise_agent.exercise_agent import exercise_agent
-from mindfullness_agent.mindfulness_agent import mindfulness_agent
-from nutrition_agent.nutrition_agent import nutrition_agent
+
+from ..exercise_agent.exercise_agent import exercise_agent
+from ..mindfullness_agent.mindfulness_agent import mindfulness_agent
+from ..nutrition_agent.nutrition_agent import nutrition_agent
 
 from .cwo_memory_tools import load_user_memories, remember_user_insight
 from .cwo_profile_tools import get_user_profile, update_user_profile
 
 
-
 chief_wellness_officer = Agent(
     name="chief_wellness_officer",
-    model="gemini-2.5-flash", 
+    model=Gemini(
+        model = "gemini-2.5-flash",
+        retry_options=get_retry_config()
+    ), 
     tools=[
         get_user_profile,
         update_user_profile,

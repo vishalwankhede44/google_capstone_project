@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Any, Dict, List, Optional
 
-from memory.user_memory_manager import MemoryEntry, memory_manager
+from ..memory.user_memory_manager import MemoryEntry, memory_manager
 
 
 def _entry_to_dict(entry: MemoryEntry) -> Dict[str, Any]:
