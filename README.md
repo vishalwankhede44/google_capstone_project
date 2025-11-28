@@ -1,4 +1,4 @@
-# 🧠 **MiniMax Wellness Orchestrator**
+# **MiniMax Wellness Orchestrator**
 
 ### *A Multi-Agent AI Wellness Planner Powered by Google Gemini + Tool-Calling*
 
@@ -14,6 +14,9 @@ MiniMax Wellness Orchestrator is an **AI-powered, multi-agent wellness planning 
 
 The project demonstrates **agentic reasoning**, **multi-tool orchestration**, **memory-augmented personalization**, and **real-world integrations**.
 
+<img width="2816" height="1536" alt="Gemini_Generated_Image_xd38zqxd38zqxd38" src="https://github.com/user-attachments/assets/ab6edc37-7328-4f68-8e4b-b1326cd1f062" />
+
+
 Instead of a single monolithic LLM prompt, this system uses a **Chief Wellness Officer (CWO)** agent that delegates tasks to specialized sub-agents. Each agent brings unique domain expertise and uses **shared context**, **profile data**, and **long-term memory** to construct a fully personalized, structured, and safe wellness plan.
 
 ---
@@ -27,13 +30,15 @@ Wellness apps often fail because they:
 3. Lack **continuity**, forgetting the user after each session
 4. Cannot adjust based on **weather, schedule, activity level**, or **dietary preferences**
 
-MiniMax Wellness Orchestrator solves these issues by:
+# MiniMax Wellness Orchestrator solves these issues by:
 
 * Maintaining a **persistent user profile**
 * Using **domain-specific specialist agents**
 * Leveraging **tool calls** for memory, profile, planning, and optional real-world data
 * Generating **fully personalized** wellness plans for real users (e.g., “Alice”, “Sarah”)
 * Evaluating and adapting recommendations based on goals, constraints, and safety
+
+<img width="2816" height="1536" alt="Gemini_Generated_Image_xd38zqxd38zqxd38 (4)" src="https://github.com/user-attachments/assets/4e839cd6-a211-41eb-933e-0762a81fb244" />
 
 ---
 
@@ -43,6 +48,8 @@ MiniMax Wellness Orchestrator solves these issues by:
 
 #### **Chief Wellness Officer (CWO)**
 
+<img width="2816" height="1536" alt="Gemini_Generated_Image_xd38zqxd38zqxd38 (1)" src="https://github.com/user-attachments/assets/0a6caec1-20aa-4281-975d-25ee49073536" />
+
 The central orchestrator responsible for:
 
 * Reading user goals
@@ -50,6 +57,7 @@ The central orchestrator responsible for:
 * Delegating tasks to specialist agents
 * Consolidating & delivering the final plan
 * Ensuring safety, realism, and consistency
+
 
 #### **Specialist Agents**
 
@@ -73,6 +81,9 @@ The central orchestrator responsible for:
    * Grounding exercises
    * Micro-practices for stress reduction
    * Long-form guided relaxation routines
+
+<img width="2816" height="1536" alt="Gemini_Generated_Image_xd38zqxd38zqxd38 (2)" src="https://github.com/user-attachments/assets/19105a72-55fa-45bd-b516-e7bab1f6c71d" />
+
 
 #### **Tooling Layer**
 
@@ -191,9 +202,11 @@ Tools used for this flow: mindfulness_orchestrator, get_user_profile, update_use
 * Gemini models (Flash/Pro)
 * SQLite for profile & memory
 * Optional MCPs:
-
   * Google Calendar
   * Weather API
+ <img width="2816" height="1536" alt="Gemini_Generated_Image_xd38zqxd38zqxd38 (3)" src="https://github.com/user-attachments/assets/05aa855e-74fe-4890-b567-9142081f3b3b" />
+
+    
 
 ### **Key Files**
 
@@ -226,6 +239,10 @@ Tools used for this flow: mindfulness_orchestrator, get_user_profile, update_use
 | Realism                  | 4           |
 | Context Use              | 5           |
 | Multi-Agent Coordination | 5           |
+
+
+<img width="2816" height="1536" alt="Gemini_Generated_Image_xd38zqxd38zqxd38 (5)" src="https://github.com/user-attachments/assets/54692be5-a7b9-42a8-bc8a-957b9caa52b6" />
+
 
 ### **Safety Behaviors Observed**
 
