@@ -9,7 +9,7 @@ from google.adk.agents import Agent
 from google.adk.tools import AgentTool
 from google.genai import types
 from google.adk.models.google_llm import Gemini
-from utils.utils import get_retry_config
+from ..utils.utils import get_retry_config
 
 from .mindfulness_tools import get_current_locality
 
