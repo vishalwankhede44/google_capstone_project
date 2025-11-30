@@ -4,7 +4,7 @@ import textwrap
 
 from google.adk.agents import Agent
 from google.adk.models.google_llm import Gemini
-from ..utils.utils import get_retry_config
+from utils.utils import get_retry_config
 
 from .nutrition_tools import generate_nutrition_plan
 

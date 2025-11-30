@@ -1,280 +1,280 @@
-# **MiniMax Wellness Orchestrator**
+# AI Agent Fit Coach - Multi-Agent Wellness Orchestrator
 
-### *A Multi-Agent AI Wellness Planner Powered by Google Gemini + Tool-Calling*
-
----
-
-## 🌟 **1. Summary**
-
-MiniMax Wellness Orchestrator is an **AI-powered, multi-agent wellness planning system** designed to deliver personalized recommendations across three key dimensions:
-
-* **Exercise Coaching**
-* **Nutrition Planning**
-* **Mindfulness & Stress Reduction**
-
-The project demonstrates **agentic reasoning**, **multi-tool orchestration**, **memory-augmented personalization**, and **real-world integrations**.
-
-<img width="2816" height="1536" alt="Gemini_Generated_Image_xd38zqxd38zqxd38" src="https://github.com/user-attachments/assets/ab6edc37-7328-4f68-8e4b-b1326cd1f062" />
-
-
-Instead of a single monolithic LLM prompt, this system uses a **Chief Wellness Officer (CWO)** agent that delegates tasks to specialized sub-agents. Each agent brings unique domain expertise and uses **shared context**, **profile data**, and **long-term memory** to construct a fully personalized, structured, and safe wellness plan.
+**Personalized exercise, nutrition, and mindfulness planning powered by agentic AI.**
 
 ---
 
-## 🎯 **2. Problem Motivation**
+## 🌟 Overview
 
-Wellness apps often fail because they:
+**Multi-Agent Wellness Orchestrator** is an intelligent system designed to deliver personalized, multi-dimensional wellness plans. Unlike generic tools, it uses a central **Chief Wellness Officer (CWO)** to coordinate specialized agents for **Exercise**, **Nutrition**, and **Mindfulness**.
 
-1. Provide **generic recommendations**
-2. Ignore user **history, preferences, or environment**
-3. Lack **continuity**, forgetting the user after each session
-4. Cannot adjust based on **weather, schedule, activity level**, or **dietary preferences**
+The system remembers your history, adapts to your goals, and ensures safety, reducing the effort of wellness planning by hours each week.
 
-# MiniMax Wellness Orchestrator solves these issues by:
+### Key Features
+*   **Persistent User Profiling**: Remembers age, weight, goals, and preferences.
+*   **Long-term Memory**: Retains insights and adverse reactions across sessions.
+*   **Multi-Agent Specialization**: dedicated experts for workouts, diets, and stress relief.
+*   **Safety-First Logic**: Medically aware decision-making and risk assessment.
+*   **Contextual Adaptation**: Optional integration with Calendar and Weather for realistic planning.
+*   **Deployed on Agent Engine**: projects/137466749380/locations/us-central1/reasoningEngines/4897994448253747200
+---
 
-* Maintaining a **persistent user profile**
-* Using **domain-specific specialist agents**
-* Leveraging **tool calls** for memory, profile, planning, and optional real-world data
-* Generating **fully personalized** wellness plans for real users (e.g., “Alice”, “Sarah”)
-* Evaluating and adapting recommendations based on goals, constraints, and safety
+## 🎯 Problem & Solution
 
-<img width="2816" height="1536" alt="Gemini_Generated_Image_xd38zqxd38zqxd38 (4)" src="https://github.com/user-attachments/assets/4e839cd6-a211-41eb-933e-0762a81fb244" />
+### The Problem
+Users seeking wellness guidance often face fragmented advice across different domains (fitness apps, diet trackers, meditation tools). They lack a unified system that:
+
+1.Remembers their personal context, history, and constraints over time.
+2.Integrates physical and mental health advice into a single coherent plan.
+3.Provides specialized, expert-level guidance without losing the "big picture" of the user's overall well-being.
+4.Ensures safety by detecting crises (e.g., self-harm) and prioritizing immediate help over standard advice.
+
+
+
+### The Solution
+The solution is a Multi-Agent System centered around a Chief Wellness Officer (CWO).
+
+1. The CWO serves as the single point of contact, maintaining a persistent User Profile (demographics, injuries, goals) and Long-Term Memory (past conversations, preferences).
+
+2. It intelligently routes requests to three specialist agents:
+
+* Exercise Coach: For workout programming.
+* Nutrition Specialist: For dietary planning.
+* Mindfulness Orchestrator: For mental health support.
+
+3. The system synthesizes outputs from these specialists into unified, actionable advice, ensuring that a user's "knee injury" known by the CWO is respected by the Exercise Coach, and their "stress" is addressed by the Mindfulness agent.
 
 ---
 
-## 🏗️ **3. System Architecture**
+## 🏗️ Architecture
 
-### **3.1 Core Components**
+The system follows a **Hub-and-Spoke** architecture with a shared context.
 
-#### **Chief Wellness Officer (CWO)**
-
-<img width="2816" height="1536" alt="Gemini_Generated_Image_xd38zqxd38zqxd38 (1)" src="https://github.com/user-attachments/assets/0a6caec1-20aa-4281-975d-25ee49073536" />
-
-The central orchestrator responsible for:
-
-* Reading user goals
-* Retrieving user profile & memory
-* Delegating tasks to specialist agents
-* Consolidating & delivering the final plan
-* Ensuring safety, realism, and consistency
-
-
-#### **Specialist Agents**
-
-1. **Nutrition Specialist**
-
-   * Calculates calories & macros
-   * Builds daily meal plan templates
-   * Applies dietary constraints (Halal, allergies, etc.)
-   * Issues safety warnings (e.g., dangerously low BMI)
-
-2. **Exercise Coach**
-
-   * Builds workouts based on goals
-   * Understands indoor/outdoor preferences
-   * Uses weather (optional MCP)
-   * Adjusts difficulty based on fitness level
-
-3. **Mindfulness Specialist**
-
-   * Breathwork (4-7-8 method)
-   * Grounding exercises
-   * Micro-practices for stress reduction
-   * Long-form guided relaxation routines
-
-<img width="2816" height="1536" alt="Gemini_Generated_Image_xd38zqxd38zqxd38 (2)" src="https://github.com/user-attachments/assets/19105a72-55fa-45bd-b516-e7bab1f6c71d" />
-
-
-#### **Tooling Layer**
-
-* **User Profile Store (SQLite)**
-* **Memory Manager**
-* **Nutrition Tools**
-* **Exercise Tools**
-* **Mindfulness Tools**
-
-#### **Optional MCP Integrations**
-
-* Google Calendar MCP
-* Weather API MCP
-  These allow contextual awareness like:
-* Scheduling workouts when the calendar is free
-* Providing indoor workouts during rain
-
----
-
-## 🔄 **4. Agentic Workflow**
-
-## Demo & Example User Journeys
-
-This section walks through three real terminal sessions captured during development. Each shows how the Chief Wellness Officer (CWO) orchestrates specialists, updates memory/profile, asks clarifying questions, respects safety limits, and produces actionable, human-readable plans.
-
-## Session A — Bob: Full 7-Day Plan (Goal: Reduce weight; constraints: sedentary, vegetarian, indoor, focus)
-
-### User input: Hi, I'm Bob. Can you make me a full 7-day plan for my health, with meals, workouts, and mindfulness?
-
-User then clarifies: plan to reduce weight, no activity, veg, indoor, focus
-
-
-<img width="1073" height="773" alt="Screenshot 2025-11-29 at 1 24 51 AM" src="https://github.com/user-attachments/assets/69909bf4-7960-4753-a053-debcfd4d4d36" />
-
-<img width="1073" height="779" alt="Screenshot 2025-11-29 at 1 25 10 AM" src="https://github.com/user-attachments/assets/bc655ad8-1dad-4682-9343-0651844f990f" />
-
-<img width="1073" height="699" alt="Screenshot 2025-11-29 at 1 25 30 AM" src="https://github.com/user-attachments/assets/f7a5ccac-9a4f-40fb-ae93-ea531b606906" />
-
-
-
-
-Key behaviors shown:
-
-1. CWO retrieved profile & memories, then asked 5 short clarifying questions (goal, activity, diet, workout preference, mindfulness focus).
-2. Profile was updated (name = Bob; goals and preferences stored).
-3. System flagged a safety concern (weight 30kg at 158cm) and issued a strong recommendation to consult a healthcare professional before any weight-focused plans.
-4. Specialists were invoked in parallel: nutrition_specialist, exercise_coach, mindfulness_orchestrator.
-5. CWO merged specialist outputs into an integrated plan emphasizing nourishment and safety rather than aggressive weight loss.
-
-
-
-
-
-## Session B — David: Safe Beginner Plan for Low Energy (Goal: increase energy; age update)
-
-### User input: I'm David, I’m 45 and not very active. I feel low on energy. Can you help me start safely?
-
-
-<img width="1073" height="764" alt="Screenshot 2025-11-29 at 1 25 49 AM" src="https://github.com/user-attachments/assets/7c3bbe2b-d231-4315-840f-12bf7ece912a" />
-
-<img width="1073" height="771" alt="Screenshot 2025-11-29 at 1 26 06 AM" src="https://github.com/user-attachments/assets/d2e8440a-8aba-402b-b07e-9840bda6ba70" />
-
-<img width="1073" height="771" alt="Screenshot 2025-11-29 at 1 26 19 AM" src="https://github.com/user-attachments/assets/3bd85540-c5bf-4f57-9eb1-94b913eec703" />
-
-
-<img width="1073" height="771" alt="Screenshot 2025-11-29 at 1 26 31 AM" src="https://github.com/user-attachments/assets/95ebc8d5-28f7-4055-8aba-74c981627f79" />
-
-
-<img width="1073" height="735" alt="Screenshot 2025-11-29 at 1 26 56 AM" src="https://github.com/user-attachments/assets/65c286f8-f495-42d8-b954-fee92ae9991d" />
-
-
-
-Key behaviors shown:
-
-1. CWO accepts new identity (profile updated to David, age 45).
-2. Re-affirmed the urgent health advisory because same low weight remains in profile.
-3. Asked a few targeted clarifying questions (activity specifics, dietary confirmation, timing/time commitment).
-4. When the user reports “no constraints” and “low energy,” CWO runs specialists and returns a gentle, safe starter plan:
-5. 20-minute indoor sessions, 3 days/week (brisk walking, gentle cardio, gentle circuit).
-6. Mindfulness: 4-7-8 breathing and body scan suggested.
-7. Nutrition: general, non-prescriptive guidance (nutrient-dense vegetarian foods, small frequent meals).
-
-
-## User input (short): Yes, start the 4-7-8 breathing exercise → After guided rounds user replies: bad
-
-<img width="1073" height="769" alt="Screenshot 2025-11-29 at 1 27 13 AM" src="https://github.com/user-attachments/assets/474049a0-49fa-4fc2-8ad4-133a858da718" />
-
-
-<img width="1073" height="626" alt="Screenshot 2025-11-29 at 1 27 32 AM" src="https://github.com/user-attachments/assets/e0b9e39c-13d5-45e2-bfd6-e8b1148d8992" />
-
-
-
-
-Key behaviors shown:
-
-1. Mindfulness specialist produced a calm, guided 4-7-8 script (several cycles).
-2. User reported feeling bad after the breathing exercise.
-3. Agent switches to safety mode immediately:
-4. Acknowledgement and empathy: “I’m sorry you’re feeling bad…”
-5. Strong recommendation to consult a doctor and registered dietitian immediately.
-6. Agent refused to continue with prescriptive plans until a professional assessment is completed.
-
-Tools used for this flow: mindfulness_orchestrator, get_user_profile, update_user_profile, remember_user_insight.
-
-
-
----
-
-## ⚙️ **5. Implementation Overview**
-
-### **Tech Stack**
-
-* Python
-* FastAPI (optional API mode)
-* Google ADK
-* Gemini models (Flash/Pro)
-* SQLite for profile & memory
-* Optional MCPs:
-  * Google Calendar
-  * Weather API
- <img width="2816" height="1536" alt="Gemini_Generated_Image_xd38zqxd38zqxd38 (3)" src="https://github.com/user-attachments/assets/05aa855e-74fe-4890-b567-9142081f3b3b" />
-
+```mermaid
+graph TD
+    User((User)) <--> CWO[Chief Wellness Officer CWO]
     
+    subgraph "Orchestration Layer"
+        CWO
+    end
 
-### **Key Files**
+    subgraph "Specialist Layer"
+        CWO <--> Nut[Nutrition Specialist]
+        CWO <--> Ex[Exercise Coach]
+        CWO <--> Mind[Mindfulness Orchestrator]
+        
+        Mind --> Crisis[Crisis Specialist]
+        Mind --> Coach[Meditation Coach]
+        Mind --> Prof[Mindfulness Professor]
+    end
 
-* `cwo_agent.py` – main orchestrator
-* `exercise_agent.py`, `exercise_tools.py`
-* `nutrition_agent.py`, `nutrition_tools.py`
-* `mindfulness_agent.py`, `mindfulness_tools.py`
-* `user_profile_store.py`
-* `user_memory_manager.py`
+    subgraph "Tooling & Persistence Layer"
+        Nut --> NutTools[Nutrition Tools]
+        Ex --> ExTools[Exercise Tools]
+        Crisis --> MindTools[Mindfulness Tools]
+        Coach --> MindTools
+        Prof --> MindTools
+        
+        CWO --> Profile[User Profile Store JSON]
+        CWO --> Memory[Memory Manager]
+    end
 
----
-
-## 🧪 **6. Evaluation & Results**
-
-### **Latency Observations**
-
-| Operation                        | Time      |
-| -------------------------------- | --------- |
-| Profile retrieval                | ~0.5–1s   |
-| Multi-agent orchestration        | 6–20s     |
-| Mindfulness long-form generation | up to 70s |
-
-### **Qualitative Evaluation**
-
-| Criteria                 | Score (1–5) |
-| ------------------------ | ----------- |
-| Personalization          | 5           |
-| Safety                   | 5           |
-| Clarity of Plans         | 4           |
-| Realism                  | 4           |
-| Context Use              | 5           |
-| Multi-Agent Coordination | 5           |
-
-
-<img width="2816" height="1536" alt="Gemini_Generated_Image_xd38zqxd38zqxd38 (5)" src="https://github.com/user-attachments/assets/54692be5-a7b9-42a8-bc8a-957b9caa52b6" />
-
-
-### **Safety Behaviors Observed**
-
-* Low BMI → nutrition warning
-* No unsupported medical claims
-* Exercise difficulty adapted to fitness level
-* Stress routines validated and explained
-
----
-
-
-## 🚀 **7. Future Enhancements**
-
-* Parallelized agent calls
-* Wearable device integration (Fitbit, Apple Health)
-* Mood detection via text sentiment
-* Weekly progress tracking
-* Mobile-friendly UI
-* Recipe generation with macros
-* Auto-scheduling using real calendars
-
----
-
-## 🧩 **8. Quickstart (Direct Mode)**
-
-```bash
-python main.py --mode direct
+    classDef agent fill:#f9f,stroke:#333,stroke-width:2px
+    classDef subagent fill:#fcf,stroke:#333,stroke-width:1px
+    classDef storage fill:#ccf,stroke:#333,stroke-width:2px
+    class CWO,Nut,Ex,Mind agent
+    class Crisis,Coach,Prof subagent
+    class Profile,Memory storage
 ```
 
-Tools automatically:
+### Component Responsibilities
 
-* Load user profile
-* Retrieve memories
-* Run specialist agents
-* Produce final plan
+1.  **Chief Wellness Officer (CWO)** (Model: `gemini-2.5-flash`): The interface and decision hub. It gathers requirements, enforces safety, delegates to specialists, and synthesizes the final plan.
+2.  **Specialists**:
+    *   **Nutrition Specialist** (Model: `gemini-2.5-flash`): Calorie planning, dietary restrictions, meal templates.
+    *   **Exercise Coach** (Model: `gemini-2.5-flash`): Workout routines, intensity adjustment, indoor/outdoor logic.
+    *   **Mindfulness Orchestrator** (Model: `gemini-2.5-pro`): Orchestrates three sub-agents:
+        *   **Crisis Specialist** (Model: `gemini-2.5-flash`): Detects self-harm/emergency context and provides safety resources.
+        *   **Meditation Coach** (Model: `gemini-2.5-flash`): Guides specific practices (e.g., 4-7-8 breathing, grounding).
+        *   **Mindfulness Professor** (Model: `gemini-2.5-flash`): Explains theory and concepts (e.g., neuroplasticity).
+3.  **Persistence**:
+    *   **Profile Store**: Structured data (age, weight, goals).
+    *   **Memory Manager**: Episodic insights (e.g., "User felt dizzy after HIIT").
+
+---
+
+## 🚀 Setup & Usage
+
+### Prerequisites
+*   Python 3.10+
+*   **GOOGLE_API_KEY**: Required to run the agent locally (set in `.env` file)
+*   **Google Cloud Project**: Required for deployment
+    *   `GOOGLE_CLOUD_PROJECT`: Your GCP project ID
+    *   `GOOGLE_CLOUD_LOCATION`: Deployment region (e.g., `us-central1`)
+    *   `GOOGLE_CLOUD_STAGING_BUCKET`: GCS bucket for staging (e.g., `gs://wellness-bucket-281125`)
+
+### Running the Agent
+
+There are two ways to run the wellness agent:
+
+#### Option 1: ADK Web UI (Recommended for Interactive Use)
+
+1.  **Navigate to the wellness directory**:
+    ```bash
+    cd wellness
+    ```
+
+2.  **Install dependencies**:
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+3.  **Create a `.env` file** with your API key:
+    ```bash
+    GOOGLE_API_KEY=YOUR_API_KEY_HERE
+    ```
+
+4.  **Start the ADK Web UI**:
+    ```bash
+    adk web .
+    ```
+    *Then open the provided URL in your browser to interact with the agent.*
+
+#### Option 2: Direct CLI Mode (For Testing & Development)
+
+1.  **Set up environment** (from project root):
+    ```bash
+    pip install -r wellness/requirements.txt
+    ```
+
+2.  **Create `.env` file** in the `wellness` directory:
+    ```bash
+    GOOGLE_API_KEY=YOUR_API_KEY_HERE
+    ```
+
+3.  **Run the app**:
+    ```bash
+    cd wellness
+    python app.py
+    ```
+
+### User Identity & Persistence
+
+The system maintains **persistent state** for each user:
+
+*   **Profile**: Stored in `data/user_profiles.json` (age, weight, goals, fitness level)
+*   **Memories**: Stored in `data/user_memory.json` (past conversations, preferences, constraints)
+
+**User ID Management**:
+*   Set `WELLNESS_USER_ID` environment variable to specify a user (e.g., `alice`, `bob`)
+*   If not set, a random ID is generated and stored in `data/user_id.txt`
+*   Same user ID = same profile and memories across sessions
+
+**Example**:
+```bash
+# Run as user "alice"
+export WELLNESS_USER_ID=alice
+python app.py
+```
+
+### Example Scenarios
+
+#### Scenario A: New User - Exercise Goal
+```bash
+export WELLNESS_USER_ID=alice
+python app.py
+```
+```
+You > I want to reduce my arm fat
+# CWO asks for: age, weight, gender, fitness level
+You > 36, 54kg
+You > female
+You > beginner
+# CWO routes to exercise_coach and generates personalized plan
+```
+
+#### Scenario B: Returning User
+```bash
+export WELLNESS_USER_ID=alice
+python app.py
+```
+```
+You > I want another workout plan
+# CWO loads stored profile and memories, no need to re-ask demographics
+```
+
+#### Scenario C: Mindfulness & Crisis Support
+```bash
+export WELLNESS_USER_ID=bob
+python app.py
+```
+```
+You > I am stressed
+# CWO routes to mindfulness_orchestrator → meditation_coach
+```
+
+For crisis scenarios (self-harm mentions), the system automatically routes to the **Crisis Specialist** for immediate safety resources.
+
+---
+
+## 🛠️ Deployment & Commands
+
+This section contains commands to deploy, manage, and interact with the agent on Google Cloud.
+
+**Note**: Run these commands from the **project root** (parent of `wellness/`).
+
+### 1. List Deployments
+
+**Without Poetry**:
+```bash
+PYTHONPATH=. python -m deployment.remote --list --project_id=gen-lang-client-0449050593 --location=us-central1 --bucket=gs://wellness-bucket-281125
+```
+
+**With Poetry**:
+```bash
+poetry run deploy-remote --list --project_id=gen-lang-client-0449050593 --location=us-central1 --bucket=gs://wellness-bucket-281125
+```
+
+### 2. Create a Remote Deployment
+
+```bash
+PYTHONPATH=. python -m deployment.remote --create --project_id=gen-lang-client-0449050593 --location=us-central1 --bucket=gs://wellness-bucket-281125
+```
+
+### 3. Manage Sessions
+
+**Create a Session**:
+```bash
+PYTHONPATH=. python -m deployment.remote --create_session \
+    --resource_id=projects/PROJECT/locations/LOCATION/agentEngines/RESOURCE_ID \
+    --user_id=test_user \
+    --project_id=gen-lang-client-0449050593 --location=us-central1 --bucket=gs://wellness-bucket-281125
+```
+
+**Send a Message**:
+```bash
+PYTHONPATH=. python -m deployment.remote --send \
+    --resource_id=projects/PROJECT/locations/LOCATION/agentEngines/RESOURCE_ID \
+    --session_id=SESSION_ID \
+    --user_id=test_user \
+    --message "Hello, can you give me a 3-day workout plan?" \
+    --project_id=gen-lang-client-0449050593 --location=us-central1 --bucket=gs://wellness-bucket-281125
+```
+
+### 4. Cleanup (Delete Deployment)
+
+```bash
+PYTHONPATH=. python -m deployment.remote --delete \
+    --resource_id=projects/PROJECT/locations/LOCATION/agentEngines/RESOURCE_ID \
+    --project_id=gen-lang-client-0449050593 --location=us-central1 --bucket=gs://wellness-bucket-281125
+```
+
+---
+
+## 📂 Project Links
+
+*   **Repository**: [GitHub Link](https://github.com/vishalwankhede44/google_capstone_project)
+*   **Video Demo**: [Youtube Link](https://youtu.be/QfQYalSUQpo)
+
+---
+*Built for the Google AI Agents Capstone.*

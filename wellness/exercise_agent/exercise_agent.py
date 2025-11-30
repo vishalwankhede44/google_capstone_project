@@ -2,7 +2,7 @@
 from .exercise_tools import generate_workout_plan
 from google.adk.models.google_llm import Gemini
 from google.adk.agents import Agent
-from ..utils.utils import get_retry_config
+from utils.utils import get_retry_config
 
 
 
