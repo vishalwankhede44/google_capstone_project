@@ -51,6 +51,7 @@ The solution is a Multi-Agent System centered around a Chief Wellness Officer (C
 The system follows a **Hub-and-Spoke** architecture with a shared context.
 
 ```mermaid
+%%{init: {'theme':'base', 'themeVariables': { 'background':'#ffffff'}}}%%
 graph TD
     User((User)) <--> CWO[Chief Wellness Officer CWO]
     
