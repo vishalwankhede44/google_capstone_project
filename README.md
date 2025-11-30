@@ -15,7 +15,6 @@ The system remembers your history, adapts to your goals, and ensures safety, red
 *   **Long-term Memory**: Retains insights and adverse reactions across sessions.
 *   **Multi-Agent Specialization**: dedicated experts for workouts, diets, and stress relief.
 *   **Safety-First Logic**: Medically aware decision-making and risk assessment.
-*   **Contextual Adaptation**: Optional integration with Calendar and Weather for realistic planning.
 *   **Deployed on Agent Engine**: projects/137466749380/locations/us-central1/reasoningEngines/4897994448253747200
 ---
 
